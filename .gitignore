@@ -3,4 +3,4 @@
 .project/
 venv/
 *.pyc
-
+infrasee/db.sqlite3
