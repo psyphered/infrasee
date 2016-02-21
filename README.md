@@ -12,5 +12,3 @@ $
 ```console
 $
 ```
-## Support
-TBD
