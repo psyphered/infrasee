@@ -3,4 +3,4 @@
 .project/
 venv/
 *.pyc
-
+*.sqlite3
