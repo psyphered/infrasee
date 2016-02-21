@@ -1,4 +1,5 @@
-from django.http import HttpResponse, JsonResponse
+from django.core import serializers
+from django.http import HttpResponse
 from django.views.generic import View
 
 from .models import Port
@@ -25,16 +26,17 @@ class PortView(View):
 
     def get(self, request):
         all_ports_list = Port.objects.all()
-        return HttpResponse(all_ports_list)
+        data = serializers.serialize("json", all_ports_list)
+        return HttpResponse(data, content_type='application/json')
 
 
 class PortDetailView(View):
     model = Port
 
     def get(self, request, pk):
-        port_details = Port.objects.get(id=pk)
-
-        return HttpResponse(port_details)
+        port_details = Port.objects.all().filter(id=pk)
+        data = serializers.serialize("json", port_details)
+        return HttpResponse(data, content_type='application/json')
 
     def post(self, request, pk):
         did_some_stuff = "stuff done"
