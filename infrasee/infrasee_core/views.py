@@ -1,7 +1,9 @@
 from django.http import HttpResponse
-from django.shortcuts import render
 
-# Create your views here.
 
 def index(request):
     return HttpResponse("Index view of infrasee_core")
+
+
+def version(request):
+    return HttpResponse('{"version":"1.0.0-DEV"}')
