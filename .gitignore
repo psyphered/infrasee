@@ -2,3 +2,5 @@
 .idea/
 .project/
 venv/
+*.pyc
+
