@@ -4,9 +4,13 @@ from django.db import models
 
 
 class Port(models.Model):
+    HOST_TYPE_CHOICES = (
+        ('0', 'TCP'),
+        ('1', 'UDP'),
+    )
     name = models.CharField(max_length=256)
     number = models.IntegerField(default=0)
-    protocol = models.CharField(max_length=3)
+    protocol = models.CharField(max_length=1, choices=HOST_TYPE_CHOICES)
 
     def __str__(self):
         return self.name
