@@ -1,3 +1,11 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Application
+from .models import Environment
+from .models import Host
+from .models import DataCenter
+
+admin.site.register(Application)
+admin.site.register(Environment)
+admin.site.register(Host)
+admin.site.register(DataCenter)
