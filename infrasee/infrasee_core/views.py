@@ -1,8 +1,11 @@
 from django.core import serializers
 from django.http import HttpResponse
 from django.views.generic import View
+from rest_framework import viewsets
 
 from .models import Port
+from .models import Application
+from .serializers import ApplicationSerializer
 
 
 class IndexView(View):
@@ -41,3 +44,11 @@ class PortDetailView(View):
     def post(self, request, pk):
         did_some_stuff = "stuff done"
         return HttpResponse(did_some_stuff)
+
+
+class ApplicationViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows applications to be viewed or edited.
+    """
+    queryset = Application.objects.all()
+    serializer_class = ApplicationSerializer
