@@ -22,17 +22,26 @@ class Port(models.Model):
         return port
 
 
-class Application(models.Model):
+class Environment(models.Model):
     name = models.CharField(max_length=256)
-    description = models.CharField(max_length=1024)
+    description = models.CharField(max_length=1024, blank=True, null=True)
 
     def __str__(self):
         return self.name
 
 
-class Environment(models.Model):
+class Application(models.Model):
     name = models.CharField(max_length=256)
-    description = models.CharField(max_length=1024)
+    description = models.CharField(max_length=1024, blank=True, null=True)
+    environments = models.ManyToManyField(Environment, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class DataCenter(models.Model):
+    name = models.CharField(max_length=256)
+    description = models.CharField(max_length=1024, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -44,16 +53,10 @@ class Host(models.Model):
         ('1', 'virtual'),
     )
     name = models.CharField(max_length=256)
-    description = models.CharField(max_length=1024)
+    description = models.CharField(max_length=1024, blank=True, null=True)
     host_type = models.CharField(max_length=1, choices=HOST_TYPE_CHOICES)
-
-    def __str__(self):
-        return self.name
-
-
-class DataCenter(models.Model):
-    name = models.CharField(max_length=256)
-    description = models.CharField(max_length=1024)
+    environment = models.ForeignKey(Environment, blank=True, null=True, on_delete=models.SET_NULL)
+    data_center = models.ForeignKey(DataCenter, blank=True, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name

@@ -5,6 +5,10 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'applications', views.ApplicationViewSet)
+router.register(r'environments', views.EnvironmentViewSet)
+router.register(r'datacenters', views.DataCenterViewSet)
+router.register(r'hosts', views.HostViewSet)
+
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
