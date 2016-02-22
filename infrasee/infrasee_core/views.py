@@ -4,8 +4,14 @@ from django.views.generic import View
 from rest_framework import viewsets
 
 from .models import Port
+from .models import Environment
 from .models import Application
+from .models import DataCenter
+from .models import Host
+from .serializers import EnvironmentSerializer
 from .serializers import ApplicationSerializer
+from .serializers import DataCenterSerializer
+from .serializers import HostSerializer
 
 
 class IndexView(View):
@@ -46,9 +52,33 @@ class PortDetailView(View):
         return HttpResponse(did_some_stuff)
 
 
+class EnvironmentViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows environments to be viewed or edited.
+    """
+    queryset = Environment.objects.all()
+    serializer_class = EnvironmentSerializer
+
+
 class ApplicationViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows applications to be viewed or edited.
     """
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
+
+
+class DataCenterViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows data centers to be viewed or edited.
+    """
+    queryset = DataCenter.objects.all()
+    serializer_class = DataCenterSerializer
+
+
+class HostViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows hosts to be viewed or edited.
+    """
+    queryset = Host.objects.all()
+    serializer_class = HostSerializer
