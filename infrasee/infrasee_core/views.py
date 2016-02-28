@@ -42,7 +42,7 @@ class EnvironmentViewSet(viewsets.ModelViewSet):
 
 class ServiceViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows hosts to be viewed or edited.
+    API endpoint that allows services to be viewed or edited.
     """
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
