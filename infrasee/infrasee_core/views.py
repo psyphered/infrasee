@@ -58,3 +58,11 @@ class HostViewSet(viewsets.ModelViewSet):
     """
     queryset = Host.objects.all()
     serializer_class = HostSerializer
+
+
+class ServiceViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows hosts to be viewed or edited.
+    """
+    queryset = Host.objects.all()
+    serializer_class = HostSerializer
