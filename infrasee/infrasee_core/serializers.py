@@ -16,7 +16,7 @@ class EnvironmentSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ApplicationSerializer(serializers.HyperlinkedModelSerializer):
-    environments = serializers.HyperlinkedRelatedField(many=True, 
+    environments = serializers.HyperlinkedRelatedField(many=True,
         view_name='environment-detail', read_only=True)
 
     class Meta:
@@ -33,8 +33,14 @@ class DataCenterSerializer(serializers.HyperlinkedModelSerializer):
 class HostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Host
-        field = ('name', 'description', 'host_type', 'environment',
-            'data_center')
+        field = (
+            'name',
+            'description',
+            'ip_address',
+            'host_type',
+            'environment',
+            'data_center',
+        )
 
 
 class PortSerializer(serializers.HyperlinkedModelSerializer):
