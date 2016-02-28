@@ -47,6 +47,7 @@ class Host(models.Model):
     )
     name = models.CharField(max_length=256)
     description = models.CharField(max_length=1024, blank=True, null=True)
+    ip_address = models.CharField('IP address', max_length=64)
     host_type = models.CharField(max_length=1, choices=HOST_TYPE_CHOICES)
     environment = models.ForeignKey(Environment, blank=True, null=True, on_delete=models.SET_NULL)
     data_center = models.ForeignKey(DataCenter, blank=True, null=True, on_delete=models.SET_NULL)
