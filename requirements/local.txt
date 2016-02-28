@@ -1,0 +1,4 @@
+# local development dependencies go here
+-r test.txt
+
+django-debug-toolbar==1.4
