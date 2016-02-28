@@ -20,7 +20,9 @@ script:
 #  - flake8 infrasee
   - python infrasee/manage.py test infrasee
   - coverage run --source=infrasee infrasee/manage.py test infrasee
+  - cat .coverage
 
 # commands to run after successful build
 after_success:
-  - coveralls debug
+  - coveralls --output=coverage.json
+  - cat coverage.json
