@@ -23,4 +23,4 @@ script:
 
 # commands to run after successful build
 after_success:
-  - coveralls
+  - coveralls debug
