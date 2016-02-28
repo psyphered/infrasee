@@ -7,11 +7,13 @@ from .models import Application
 from .models import DataCenter
 from .models import Host
 from .models import Port
+from .models import Service
 from .serializers import EnvironmentSerializer
 from .serializers import ApplicationSerializer
 from .serializers import DataCenterSerializer
 from .serializers import HostSerializer
 from .serializers import PortSerializer
+from .serializers import ServiceSerializer
 
 
 class VersionView(View):
@@ -36,6 +38,14 @@ class EnvironmentViewSet(viewsets.ModelViewSet):
     """
     queryset = Environment.objects.all()
     serializer_class = EnvironmentSerializer
+
+
+class ServiceViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows services to be viewed or edited.
+    """
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
 
 
 class ApplicationViewSet(viewsets.ModelViewSet):
