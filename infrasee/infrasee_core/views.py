@@ -6,10 +6,12 @@ from .models import Environment
 from .models import Application
 from .models import DataCenter
 from .models import Host
+from .models import Port
 from .serializers import EnvironmentSerializer
 from .serializers import ApplicationSerializer
 from .serializers import DataCenterSerializer
 from .serializers import HostSerializer
+from .serializers import PortSerializer
 
 
 class VersionView(View):
@@ -22,10 +24,10 @@ class VersionView(View):
 
 class PortViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows environments to be viewed or edited.
+    API endpoint that allows ports to be viewed or edited.
     """
-    queryset = Environment.objects.all()
-    serializer_class = EnvironmentSerializer
+    queryset = Port.objects.all()
+    serializer_class = PortSerializer
 
 
 class EnvironmentViewSet(viewsets.ModelViewSet):
