@@ -35,3 +35,9 @@ class HostSerializer(serializers.HyperlinkedModelSerializer):
         model = Host
         field = ('name', 'description', 'host_type', 'environment',
             'data_center')
+
+
+class PortSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Host
+        field = ('name', 'number', 'protocol')
