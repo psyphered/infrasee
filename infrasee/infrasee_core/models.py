@@ -8,18 +8,11 @@ class Port(models.Model):
         ('TCP', 'TCP'),
         ('UDP', 'UDP'),
     )
-    name = models.CharField(max_length=256)
-    number = models.IntegerField(default=0)
+    number = models.IntegerField()
     protocol = models.CharField(max_length=3, choices=HOST_TYPE_CHOICES)
 
     def __str__(self):
-        return self.name
-
-    @classmethod
-    def create(cls, name, number, protocol):
-        port = cls(name=name, number=number, protocol=protocol)
-        # do something with the port
-        return port
+        return str(self.number)
 
 
 class Environment(models.Model):
@@ -57,6 +50,15 @@ class Host(models.Model):
     host_type = models.CharField(max_length=1, choices=HOST_TYPE_CHOICES)
     environment = models.ForeignKey(Environment, blank=True, null=True, on_delete=models.SET_NULL)
     data_center = models.ForeignKey(DataCenter, blank=True, null=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.name
+
+
+class Service(models.Model):
+    name = models.CharField(max_length=256)
+    description = models.CharField(max_length=1024, blank=True, null=True)
+    ports = models.ManyToManyField(Port, blank=True)
 
     def __str__(self):
         return self.name

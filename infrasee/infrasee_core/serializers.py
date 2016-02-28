@@ -4,6 +4,7 @@ from .models import Environment
 from .models import Application
 from .models import DataCenter
 from .models import Host
+from .models import Service
 
 
 class EnvironmentSerializer(serializers.HyperlinkedModelSerializer):
@@ -40,4 +41,10 @@ class HostSerializer(serializers.HyperlinkedModelSerializer):
 class PortSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Host
-        field = ('name', 'number', 'protocol')
+        field = ('number', 'protocol')
+
+
+class ServiceSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Service
+        field = ('name', 'description', 'ports')
