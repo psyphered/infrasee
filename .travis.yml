@@ -1,0 +1,23 @@
+language: python
+python:
+  - "3.4"
+  - "3.5"
+
+services:
+  - postgresql
+
+# command to install test dependencies
+install: "pip install -r requirements/test.txt"
+
+before_script:
+  - psql -c 'create database infrasee;' -U postgres
+
+# commands to run tests
+script:
+#  - flake8 infrasee
+  - python infrasee/manage.py test infrasee
+  - coverage run --source=infrasee infrasee/manage.py test infrasee
+
+# commands to run after successful build
+after_success:
+  - coveralls
